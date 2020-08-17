@@ -7,7 +7,7 @@ from .models import Author, Genre, Book, BookInstance
 admin.site.register(Genre)
 # admin.site.register(BookInstance)
 class BookInstanceInline(admin.TabularInline):
-	model = BookInstance
+    	model = BookInstance
 
 class BookInline(admin.TabularInline):
 	model  = Book
@@ -26,13 +26,13 @@ class BookAdmin(admin.ModelAdmin):
 @admin.register(BookInstance)
 class BookInstanceAdmin(admin.ModelAdmin):
 	list_filter = ('status', 'due_back')
-	list_display = ('id', 'status', 'due_back')
-	
+	list_display = ('id', 'status', 'due_back', 'borrower')
+
 	fieldsets = (
-        (None, {
+        ('Book Detials', {
             'fields': ('book', 'imprint', 'id')
         }),
         ('Availability', {
-            'fields': ('status', 'due_back')
+            'fields': ('status', 'due_back', 'borrower')
         }),
     )
